@@ -101,12 +101,14 @@ class ListUsersPageState extends State<ListUsersPage>
           vertical: sizeDevice.ip(2),
         ),
         child: inizialiteData
-            ? ListView.builder(
-                itemCount: userListFilter.length,
-                itemBuilder: (_, int index) {
-                  return _buildCard(sizeDevice, userListFilter[index]!);
-                },
-              )
+            ? userListFilter.isNotEmpty
+                ? ListView.builder(
+                    itemCount: userListFilter.length,
+                    itemBuilder: (_, int index) {
+                      return _buildCard(sizeDevice, userListFilter[index]!);
+                    },
+                  )
+                : Text(S.current.emptyList)
             : const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -219,7 +221,12 @@ class ListUsersPageState extends State<ListUsersPage>
                             Navigator.pushNamed(
                               context,
                               AppRoutes.listUsersPost,
-                              arguments: ScreenArguments(user.id),
+                              arguments: ScreenArguments(
+                                user.id,
+                                user.name,
+                                user.phone,
+                                user.email,
+                              ),
                             );
                           } else {
                             sendUSerMessage(S.current.netWorkError);

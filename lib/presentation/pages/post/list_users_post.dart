@@ -12,7 +12,17 @@ import 'package:ceiba/presentation/utils/responsive.dart';
 
 class ListUsersPostPage extends StatefulWidget {
   final int userId;
-  const ListUsersPostPage({Key? key, required this.userId}) : super(key: key);
+  final String userName;
+  final String userPhoneNumber;
+  final String userEmail;
+
+  const ListUsersPostPage({
+    Key? key,
+    required this.userId,
+    required this.userName,
+    required this.userPhoneNumber,
+    required this.userEmail,
+  }) : super(key: key);
 
   @override
   State<ListUsersPostPage> createState() => ListUsersPostPageState();
@@ -82,6 +92,58 @@ class ListUsersPostPageState extends State<ListUsersPostPage>
                 child: Column(
                   children: [
                     _buildSeachBar(sizeDevice),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: sizeDevice.ip(1.5),
+                          horizontal: sizeDevice.ip(2)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.userName,
+                            style: TextStyle(
+                              fontSize: sizeDevice.ip(2.5),
+                              color: mainColor,
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.phone,
+                                color: mainColor,
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: sizeDevice.ip(0.8)),
+                                child: Text(
+                                  widget.userPhoneNumber,
+                                  style:
+                                      TextStyle(fontSize: sizeDevice.ip(1.8)),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.email,
+                                color: mainColor,
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: sizeDevice.ip(0.8)),
+                                child: Text(
+                                  widget.userEmail,
+                                  style:
+                                      TextStyle(fontSize: sizeDevice.ip(1.8)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                     _buildMainView(sizeDevice),
                   ],
                 ),
@@ -100,12 +162,14 @@ class ListUsersPostPageState extends State<ListUsersPostPage>
           vertical: sizeDevice.ip(2),
         ),
         child: inizialiteData
-            ? ListView.builder(
-                itemCount: postListFilter.length,
-                itemBuilder: (_, int index) {
-                  return _buildCard(sizeDevice, postListFilter[index]!);
-                },
-              )
+            ? postListFilter.isNotEmpty
+                ? ListView.builder(
+                    itemCount: postListFilter.length,
+                    itemBuilder: (_, int index) {
+                      return _buildCard(sizeDevice, postListFilter[index]!);
+                    },
+                  )
+                : Text(S.current.emptyList)
             : const Center(
                 child: CircularProgressIndicator(),
               ),
