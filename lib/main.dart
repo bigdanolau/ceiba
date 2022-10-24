@@ -75,6 +75,9 @@ class RootPage extends StatelessWidget {
                 create: (_) => PostBloc(GetIt.I<UsersRepositoryImpl>()),
                 child: ListUsersPostPage(
                   userId: args.userId,
+                  userName: args.userName,
+                  userPhoneNumber: args.userPhoneNumber,
+                  userEmail: args.userEmail,
                 ),
               );
             },
@@ -114,6 +117,10 @@ class AppRoutes {
 
 class ScreenArguments {
   final int userId;
+  final String userName;
+  final String userPhoneNumber;
+  final String userEmail;
 
-  ScreenArguments(this.userId);
+  ScreenArguments(
+      this.userId, this.userName, this.userPhoneNumber, this.userEmail);
 }

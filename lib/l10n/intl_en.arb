@@ -5,6 +5,8 @@
     "goToPost": "Ver publicaciones",
     "readMore": "Leer más",
     "workingOnIt": "Estamos trabajando en esta funcionalidad, estará disponible en una próxima actualización.",
-    "netWorkError": "Por favor vuelve a conectarte a internet."
+    "netWorkError": "Por favor vuelve a conectarte a internet.",
+    "emptyList": "List is empty"
+
 
 }

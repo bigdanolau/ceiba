@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "emptyList": MessageLookupByLibrary.simpleMessage("List is empty"),
         "goToPost": MessageLookupByLibrary.simpleMessage("Ver publicaciones"),
         "netWorkError": MessageLookupByLibrary.simpleMessage(
             "Por favor vuelve a conectarte a internet."),
